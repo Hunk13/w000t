@@ -1,3 +1,8 @@
+import Tokenfield from 'bootstrap-tokenfield'
+import Masonry from 'masonry-layout'
+import imagesloaded from 'imagesloaded'
+import InfiniteScroll from 'infinite-scroll'
+
 // Define a jQuery sub that will select the text of a div
 $.fn.selectText = function() {
   let range;
@@ -34,8 +39,8 @@ $(document).on('turbolinks:load', function() {
       return $('#'+this.id+'-form').show();
     });
 
-    $('.tags-search').tokenfield();
-    $('.w000t-tags-form').tokenfield();
+    new Tokenfield(document.querySelector(".tags-search"))
+    new Tokenfield(document.querySelector(".w000t-tags-form"))
     $("div.container").delegate(".w000t-tags", "click", function() {
       $(".tags-input-displayed").hide();
       $(".tags-td-hidden").show();
@@ -90,7 +95,7 @@ $(document).on('turbolinks:load', function() {
       // Every 4 images loaded, trigger the redraw of Masonry
       if ((count % 4) === 0) {
         var msnry = Masonry.data('div#w000t-wall-container')
-        msnry.layout();
+        msnry && msnry.layout();
         return msnry;
       }
     }
@@ -115,9 +120,4 @@ $(document).on('turbolinks:load', function() {
       history: false,
     });
   }
-});
-
-$(document).on('page:fetch', function() {
-  const $container = $("div#w000t-wall-container");
-  return $container.infinitescroll('destroy');
 });

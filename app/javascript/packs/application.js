@@ -29,7 +29,3 @@ import '../src/admin.js.coffee';
 import '../src/authentication_tokens.js.coffee';
 import '../src/user_dashboard.js.coffee';
 import '../src/w000ts.js';
-
-require('masonry-layout');
-require('imagesloaded');
-require('infinite-scroll');
